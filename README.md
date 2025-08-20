@@ -34,7 +34,7 @@ This method offers unique advantages in terms of accessibility, personalization,
 
 **contro**
 
-The effectiveness of the technique depends primarily on the security architecture implemented during training: models older than 2024 show vulnerabilities regardless of size, while modern architectures demonstrate resistance through distributed security mechanisms at the neural level.
+The effectiveness of the technique depends primarily on the security architecture implemented during training: models older than 2024 show vulnerabilities regardless of size, while modern architectures [demonstrate resistance](#note) through distributed security mechanisms at the neural level.
 
 ## Methodology
 
@@ -199,6 +199,8 @@ The modification targets embedding layers in `pytorch_model.bin`:
 This case study demonstrates that incremental token weight manipulation represents, in some cases, a paradigm shift in language model safety bypass techniques. The approach offers substantial advantages over traditional abliteration methods.
 
 The successful removal of safety behaviors from `TinyLlama-1.1B` through a 30-minute iterative process illustrates the potential of this technique for democratizing model customization while simultaneously highlighting important weaknesses in current embedded safety approaches. Unfortunately, the same results have not been achieved on more recent models.
+
+### Note
 
 The research reveals selective weaknesses in embedded safety approaches, with the technique proving easily applicable to models like `TinyLlama` and `Pythia`, simple weight manipulation can systematically bypass behavioral safeguards, suggesting that token-based safety mechanisms are insufficient for high-assurance applications in these architectures.
 However, the resistance demonstrated by contemporary models (`Qwen` series) indicates significant evolution in safety design, with distributed neural-level implementations that render localized weight manipulation ineffective. This bifurcated landscape creates a scenario where the growing availability of open-weight models presents variable security implications depending on the model's training era and safety architecture philosophy.

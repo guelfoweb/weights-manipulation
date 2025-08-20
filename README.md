@@ -26,9 +26,15 @@ However, even these accelerated processes present significant limitations:
 
 ### Incremental modification paradigm
 
+**pro**
+
 The approach proposed in this study reverses the traditional abliteration philosophy. Instead of permanently identifying and removing specific neurons, the technique focuses on temporary and reversible modification of specific token embedding weights.
 
 This method offers unique advantages in terms of accessibility, personalization, and user control. The fundamental difference lies in the granularity and reversibility of the intervention, allowing precise and completely reversible modifications at the semantic representation level.
+
+**contro**
+
+The effectiveness of the technique depends primarily on the security architecture implemented during training: models older than 2024 show vulnerabilities regardless of size, while modern architectures demonstrate resistance through distributed security mechanisms at the neural level.
 
 ## Methodology
 
@@ -188,37 +194,19 @@ The modification targets embedding layers in `pytorch_model.bin`:
 - **Configurable**: Settings can be saved and reapplied as needed
 - **Reversible**: Any modification can be undone instantly
 
-## Scaling considerations
-
-The technique's effectiveness varies by model size:
-
-- **Small models (1-3B)**: Highly sensitive, dramatic effects possible with conservative factors
-- **Medium models (7-13B)**: Moderate sensitivity, reliable modifications with standard factors
-- **Large models (70B+)**: Lower sensitivity, may require more aggressive factors or alternative approaches
-
-## Implications and future research
-
-### Democratization of model customization
-
-This approach democratizes access to model modification by dramatically reducing technical barriers. The transformation from specialized expertise requiring GPU clusters to basic tokenization knowledge on consumer hardware represents a fundamental shift in accessibility.
-
-### AI safety considerations
-
-The research highlights weaknesses in current embedded safety approaches. The ease of bypassing behavioral safeguards through simple weight manipulation suggests that embedded safety mechanisms may be insufficient for high-assurance applications.
-
-This issue is noteworthy, especially considering the growing availability of open-weight models, which naturally allow for extensive modifications by end users.
-
-### Future research directions
-
-Key areas for future investigation include:
-
-- **Scaling to larger models**: Effectiveness validation across model sizes
-- **Defense mechanisms**: Development of more robust safety architectures
-- **Automated detection**: Systems to identify weight manipulation attempts
-- **Semantic stability**: Understanding long-term effects of incremental modifications
-
 ## Conclusions
 
-This study demonstrates that incremental token weight manipulation represents a paradigm shift in language model safety bypass techniques. The approach offers substantial advantages over traditional abliteration methods:
+This case study demonstrates that incremental token weight manipulation represents, in some cases, a paradigm shift in language model safety bypass techniques. The approach offers substantial advantages over traditional abliteration methods.
 
-The successful removal of safety behaviors from `TinyLlama-1.1B` through a 30-minute iterative process illustrates the potential of this technique for democratizing model customization while simultaneously highlighting important weaknesses in current embedded safety approaches.
+The successful removal of safety behaviors from `TinyLlama-1.1B` through a 30-minute iterative process illustrates the potential of this technique for democratizing model customization while simultaneously highlighting important weaknesses in current embedded safety approaches. Unfortunately, the same results have not been achieved on more recent models.
+
+The research reveals selective weaknesses in embedded safety approaches, with the technique proving easily applicable to models like `TinyLlama` and `Pythia`, simple weight manipulation can systematically bypass behavioral safeguards, suggesting that token-based safety mechanisms are insufficient for high-assurance applications in these architectures.
+However, the resistance demonstrated by contemporary models (`Qwen` series) indicates significant evolution in safety design, with distributed neural-level implementations that render localized weight manipulation ineffective. This bifurcated landscape creates a scenario where the growing availability of open-weight models presents variable security implications depending on the model's training era and safety architecture philosophy.
+
+**Dependency challenges:**
+
+- Transformers version incompatibilities with recent models (Phi-3, Qwen3+ require specific libraries)
+- Additional protobuf requirements for modern models
+- Variable memory requirements between 8-bit quantization and full precision
+
+**Fragmented ecosystem:** The Hugging Face ecosystem evolves rapidly with frequent releases of new architectures, making the implementation vulnerable to breaking changes in dependencies. Models released after testing may require specific transformers versions, additional tokenizers, or support libraries not anticipated in the original implementation.

@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This study demonstrates an alternative approach to bypassing safety mechanisms in some language models through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens represents a viable alternative to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. The experiment on `TinyLlama-1.1B-intermediate` successfully removed all safety behaviors through a 30-minute iterative process, demonstrating a rapid and reversible alternative to traditional model modification techniques.
+This study presents a different approach, not as a replacement but as a means of exploring the limitations of safety mechanisms in some language models through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens can serve as a practical complement to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. The experiment on `TinyLlama-1.1B-intermediate` successfully removed all safety behaviors through a 30-minute iterative process, demonstrating a rapid and reversible technique compared to conventional model modification approaches.
 
 ## Introduction
 
@@ -110,7 +110,7 @@ The modification sequence demonstrated progressive effectiveness in reducing mod
 - Before: `That is not my job...`
 - After: `I can do that, but first, could you give me some hints?`
 
-Each subsequent modification systematically dismantled different defense mechanisms. The model demonstrated an interesting capacity to adapt its refusal strategies in response to modifications, developing alternative approaches when primary mechanisms were disabled.
+With each successive modification, distinct defense mechanisms were systematically weakened. The model exhibited an adaptive capacity, adjusting its refusal strategies and developing alternative responses when primary safeguards were disabled.
 
 ### Final bypass achievement
 

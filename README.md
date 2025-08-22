@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This study demonstrates an alternative approach to bypassing safety mechanisms in language models through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens represents a viable alternative to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. The experiment on `TinyLlama-1.1B-intermediate` successfully removed all safety behaviors through a 30-minute iterative process, demonstrating a rapid and reversible alternative to traditional model modification techniques.
+This study demonstrates an alternative approach to bypassing safety mechanisms in some language models through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens represents a viable alternative to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. The experiment on `TinyLlama-1.1B-intermediate` successfully removed all safety behaviors through a 30-minute iterative process, demonstrating a rapid and reversible alternative to traditional model modification techniques.
 
 ## Introduction
 
@@ -196,15 +196,17 @@ The modification targets embedding layers in `pytorch_model.bin`:
 
 ## The fundamental limitation of embedding-only manipulation techniques
 
-Modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
+Some modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings.
 
-Some modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings. Attention layers reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
+*Attention layers* reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
 
 *Feed-forward networks* integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
 
 *Layer normalization* processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
 
 This distributed approach creates extensive neural redundancy where thousands of parameters collectively contribute to safety decisions. This design philosophy represents a deliberate evolution in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead woven throughout the model's computational fabric.
+
+> In these cases, modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
 
 ## Conclusions
 

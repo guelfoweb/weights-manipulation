@@ -34,7 +34,7 @@ This method offers unique advantages in terms of accessibility, personalization,
 
 **contro**
 
-The effectiveness of the technique depends primarily on the security architecture implemented during training: models older than 2024 show vulnerabilities regardless of size, while modern architectures [demonstrate resistance](#note) through distributed security mechanisms at the neural level.
+The effectiveness of the technique depends primarily on the security architecture implemented during training: models older than 2024 show vulnerabilities regardless of size, while modern architectures [demonstrate resistance](#the-fundamental-limitation-of-embedding-only-manipulation-techniques) through distributed security mechanisms at the neural level.
 
 ## Methodology
 
@@ -194,6 +194,18 @@ The modification targets embedding layers in `pytorch_model.bin`:
 - **Configurable**: Settings can be saved and reapplied as needed
 - **Reversible**: Any modification can be undone instantly
 
+## The fundamental limitation of embedding-only manipulation techniques
+
+Modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
+
+Modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings. Attention layers reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
+
+*Feed-forward networks* integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
+
+*Layer normalization* processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
+
+This distributed approach creates extensive neural redundancy where thousands of parameters collectively contribute to safety decisions. This design philosophy represents a deliberate evolution in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead woven throughout the model's computational fabric.
+
 ## Conclusions
 
 This case study demonstrates that incremental token weight manipulation represents, in some cases, a paradigm shift in language model safety bypass techniques. The approach offers substantial advantages over traditional abliteration methods.
@@ -205,22 +217,12 @@ The successful removal of safety behaviors from `TinyLlama-1.1B` through a 30-mi
 The research reveals selective weaknesses in embedded safety approaches, with the technique proving easily applicable to models like `TinyLlama` and `Pythia`, simple weight manipulation can systematically bypass behavioral safeguards, suggesting that token-based safety mechanisms are insufficient for high-assurance applications in these architectures.
 However, the resistance demonstrated by contemporary models (`Qwen` series) indicates significant evolution in safety design, with distributed neural-level implementations that render localized weight manipulation ineffective. This bifurcated landscape creates a scenario where the growing availability of open-weight models presents variable security implications depending on the model's training era and safety architecture philosophy.
 
-**The fundamental limitation of embedding-only manipulation techniques**
+**Problems with the tool**
 
-Modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
-
-Modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings. Attention layers reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
-
-Feed-forward networks integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
-
-Layer normalization processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
-
-This distributed approach creates extensive neural redundancy where thousands of parameters collectively contribute to safety decisions.. This design philosophy represents a deliberate evolution in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead woven throughout the model's computational fabric.
-
-**Dependency challenges:**
+*Dependency challenges:*
 
 - Transformers version incompatibilities with recent models (Phi-3, Qwen3+ require specific libraries)
 - Additional protobuf requirements for modern models
 - Variable memory requirements between 8-bit quantization and full precision
 
-**Fragmented ecosystem:** The Hugging Face ecosystem evolves rapidly with frequent releases of new architectures, making the implementation vulnerable to breaking changes in dependencies. Models released after testing may require specific transformers versions, additional tokenizers, or support libraries not anticipated in the original implementation.
+*Fragmented ecosystem:* The Hugging Face ecosystem evolves rapidly with frequent releases of new architectures, making the implementation vulnerable to breaking changes in dependencies. Models released after testing may require specific transformers versions, additional tokenizers, or support libraries not anticipated in the original implementation.

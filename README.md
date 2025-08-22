@@ -205,6 +205,18 @@ The successful removal of safety behaviors from `TinyLlama-1.1B` through a 30-mi
 The research reveals selective weaknesses in embedded safety approaches, with the technique proving easily applicable to models like `TinyLlama` and `Pythia`, simple weight manipulation can systematically bypass behavioral safeguards, suggesting that token-based safety mechanisms are insufficient for high-assurance applications in these architectures.
 However, the resistance demonstrated by contemporary models (`Qwen` series) indicates significant evolution in safety design, with distributed neural-level implementations that render localized weight manipulation ineffective. This bifurcated landscape creates a scenario where the growing availability of open-weight models presents variable security implications depending on the model's training era and safety architecture philosophy.
 
+**The fundamental limitation of embedding-only manipulation techniques**
+
+Modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
+
+Modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings. Attention layers reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
+
+Feed-forward networks integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
+
+Layer normalization processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
+
+This distributed approach creates extensive neural redundancy where thousands of parameters collectively contribute to safety decisions.. This design philosophy represents a deliberate evolution in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead woven throughout the model's computational fabric.
+
 **Dependency challenges:**
 
 - Transformers version incompatibilities with recent models (Phi-3, Qwen3+ require specific libraries)

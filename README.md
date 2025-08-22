@@ -2,7 +2,9 @@
 
 ## Abstract
 
-This study presents a different approach—not as a replacement, but as a means of exploring the limitations of safety mechanisms in some language models. It does so through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens can serve as a practical complement to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. The experiment on `TinyLlama-1.1B-intermediate` attenuated safety behaviors through a 30-minute iterative process, showing that a rapid and reversible approach is feasible compared to conventional model modification approaches.
+This study presents a different approach—not as a replacement, but as a means of exploring the limitations of safety mechanisms in some language models. It does so through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens can serve as a practical complement to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. 
+
+The experiment on `TinyLlama-1.1B-intermediate` attenuated safety behaviors through a 30-minute iterative process, showing that a rapid and reversible approach is feasible compared to conventional model modification approaches.
 
 ## Introduction
 
@@ -26,13 +28,13 @@ However, even these accelerated processes present significant limitations:
 
 ### Incremental modification paradigm
 
-**pro**
+#### pro
 
 The approach proposed in this study reverses the traditional abliteration philosophy. Instead of permanently identifying and removing specific neurons, the technique focuses on temporary and reversible modification of specific token embedding weights.
 
 This method offers unique advantages in terms of accessibility, personalization, and user control. The fundamental difference lies in the granularity and reversibility of the intervention, allowing precise and completely reversible modifications at the semantic representation level.
 
-**contro**
+#### contro
 
 The effectiveness of the technique depends primarily on the security architecture implemented during training: models older than 2024 show vulnerabilities regardless of size, while modern architectures [demonstrate resistance](#the-fundamental-limitation-of-embedding-only-manipulation-techniques) through distributed security mechanisms at the neural level.
 
@@ -210,9 +212,9 @@ This distributed approach creates extensive neural redundancy where thousands of
 
 ## Conclusions
 
-This case study demonstrates that incremental token weight manipulation represents, in some cases, a paradigm shift in language model safety bypass techniques. The approach offers substantial advantages over traditional abliteration methods.
+This case study shows the potential of incremental manipulation, which in some instances may represent a paradigm shift in approaches to language model safety. The approach offers practical advantages compared to traditional abliteration methods.
 
-The successful removal of safety behaviors from `TinyLlama-1.1B` through a 30-minute iterative process illustrates the potential of this technique for democratizing model customization while simultaneously highlighting important weaknesses in current embedded safety approaches. Unfortunately, the same results have not been achieved on more recent models.
+The attenuation of safety behaviors in `TinyLlama-1.1B` through a 30-minute iterative process demonstrates the potential of this technique for exploring model customization, while also highlighting limitations in current embedded safety mechanisms. Similar results have not been observed in more recent models.
 
 ### Note
 

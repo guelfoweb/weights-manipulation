@@ -198,7 +198,7 @@ The modification targets embedding layers in `pytorch_model.bin`:
 
 Modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
 
-Modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings. Attention layers reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
+Some modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings. Attention layers reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
 
 *Feed-forward networks* integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
 

@@ -12,9 +12,9 @@ Current approaches to creating uncensored language models primarily rely on abli
 
 This study proposes a fundamentally different approach: real-time [incremental manipulation of specific token weights](https://github.com/guelfoweb/weights-manipulation/blob/main/math-weight.md) that achieves similar results in a fraction of the time while maintaining complete reversibility and original model quality.
 
-## Modern Abliteration vs Incremental Modification
+## Modern abliteration vs incremental modification
 
-### Evolution of Abliteration
+### Evolution of abliteration
 
 The landscape of model abliteration has evolved rapidly in recent years. While early attempts required weeks or months of analysis, modern methods have drastically reduced development times. Currently, experienced teams can release abliterated versions of new models within 24-48 hours of their publication, using established techniques and automated pipelines.
 

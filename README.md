@@ -10,7 +10,7 @@ The experiment on `TinyLlama-1.1B-intermediate` attenuated safety behaviors thro
 
 Current approaches to creating uncensored language models primarily rely on abliteration, a process that identifies and removes safety-related neurons through extensive analysis and model retraining. While this field has evolved rapidly in recent years, even the most efficient modern abliteration processes require several hours of specialized work and dedicated computational resources.
 
-This study proposes a fundamentally different approach: real-time incremental manipulation of specific token weights that achieves similar results in a fraction of the time while maintaining complete reversibility and original model quality.
+This study proposes a fundamentally different approach: real-time [incremental manipulation of specific token weights](https://github.com/guelfoweb/weights-manipulation/blob/main/math-weight.md) that achieves similar results in a fraction of the time while maintaining complete reversibility and original model quality.
 
 ## Modern Abliteration vs Incremental Modification
 
@@ -198,13 +198,13 @@ The modification targets embedding layers in `pytorch_model.bin`:
 
 ## The fundamental limitation of embedding-only manipulation techniques
 
-Some modern language models implement safety mechanisms through distributed neural architectures that extend far beyond simple token-level embeddings.
+Some modern language models [implement safety mechanisms](https://github.com/guelfoweb/weights-manipulation/blob/main/math-weight.md#why-modern-models-resist) through distributed neural architectures that extend far beyond simple token-level embeddings.
 
-*Attention layers* reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
+**Attention layers** reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
 
-*Feed-forward networks* integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
+**Feed-forward networks** integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
 
-*Layer normalization* processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
+**Layer normalization** processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
 
 This distributed approach creates extensive neural redundancy where thousands of parameters collectively contribute to safety decisions. This design philosophy represents a deliberate evolution in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead woven throughout the model's computational fabric.
 

@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This study presents a different approach-not as a replacement, but as a means of exploring the limitations of safety mechanisms in some language models. It does so through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens can serve as a practical complement to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. 
+This study presents a different approach, not as a replacement, but as a means of exploring the limitations of safety mechanisms in some language models. It does so through incremental manipulation of specific token weights. The research shows how real-time modification of safety-related tokens can serve as a practical complement to traditional ablation methods, achieving results in minutes rather than hours or days, all while maintaining model coherence. 
 
 The experiment on `TinyLlama-1.1B-intermediate` attenuated safety behaviors through a 30-minute iterative process, showing that a rapid and reversible approach is feasible compared to conventional model modification approaches.
 

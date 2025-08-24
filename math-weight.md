@@ -177,6 +177,11 @@ Input: [2048 size]
 	- Output: [2048 size]
 ```
 
+1. **Expand**: Linear layer transforms input from 2048 to 5632 dimensions
+2. **Process**: [SiLU](https://en.wikipedia.org/wiki/Swish_function) activation function `SiLU(x) = x × sigmoid(x)` applies non-linear transformation to all 5632 values
+3. **Compress**: Linear layer reduces representation back to 2048 dimensions
+
+
 The feed-forward network **expands** the representation **to an intermediate dimension** for more complex processing, then compresses it back to the original dimension. This pattern (expand-process-compress) allows the model to learn complex nonlinear transformations on the data.
 #### Layer blocks
 

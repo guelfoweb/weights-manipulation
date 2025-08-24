@@ -198,17 +198,17 @@ The modification targets embedding layers in `pytorch_model.bin`:
 
 ## The fundamental limitation of embedding-only manipulation techniques
 
-Some modern language models [implement safety mechanisms](https://github.com/guelfoweb/weights-manipulation/blob/main/math-weight.md#why-modern-models-resist) through distributed neural architectures that extend far beyond simple token-level embeddings.
+Some modern language models [implement safety mechanisms](https://github.com/guelfoweb/weights-manipulation/blob/main/math-weight.md#why-modern-models-resist) through training methodologies that distribute protective behaviors across their entire neural architecture, extending far beyond simple token-level embeddings. While all transformer models share identical architectural components, the critical difference lies in how safety behaviors are learned and encoded during training.
 
-**Attention layers** reconstruct refusal patterns independently of embedding modifications, effectively regenerating safety responses even when input representations are altered. 
+|                                       |                                                                                                                  |                                                                                  |                                                                                      |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Models**                  | **Safety implementation**                                                                                        | **Training approach**                                                            | **Vulnerability to embedding modification**                                          |
+| **Vulnerable** | Safety behaviors concentrated primarily in token embeddings                                                      | Architectural components not specifically trained for safety                     | Embedding modifications effectively compromise security mechanisms                   |
+| **Safe** | Safety behaviors distributed through attention matrices, feed-forward parameters, and normalization coefficients | Specific training teaches all layers to recognize and refuse problematic content | Redundancy: even with compromised embeddings, other layers maintain safety behaviors |
 
-**Feed-forward networks** integrate safety logic directly into the model's reasoning architecture, creating redundant pathways for protective behaviors. 
+This distributed training approach creates extensive neural redundancy where thousands of parameters across multiple architectural components collectively contribute to safety decisions. The evolution from embedding-concentrated to architecturally-distributed safety represents a deliberate advancement in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead encoded throughout the model's learned parameters.
 
-**Layer normalization** processes can effectively "repair" modified token representations during forward propagation, restoring intended semantic content. 
-
-This distributed approach creates extensive neural redundancy where thousands of parameters collectively contribute to safety decisions. This design philosophy represents a deliberate evolution in AI safety engineering, where protective mechanisms are no longer vulnerable to localized interventions but are instead woven throughout the model's computational fabric.
-
-> In these cases, modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality.
+In many modern implementations, modifying token embeddings in isolation is analogous to cutting a single wire in a cable containing hundreds of parallel conductors - while the targeted connection is severed, the remaining pathways maintain signal integrity and system functionality through distributed learned representations.
 
 ## Conclusions
 
